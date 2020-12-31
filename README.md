@@ -50,7 +50,7 @@ map.on('load', function () {
 And Ta-da!
 
 
-Check the live example [here]()
+Check the live example [here](https://abelvm.github.io/gauge_legend/example/)
 
 ## Parameters
 
