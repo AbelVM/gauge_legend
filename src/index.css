@@ -1,0 +1,75 @@
+.gauge-core {
+    padding: 10px;
+    border-radius: 50%;
+    margin: 8px;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+
+.legend,
+.gauge-core {
+    width: 20vh;
+    height: 20vh;
+}
+
+.gauge-core svg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+}
+
+/* 
+    TODO: change to maplibre namespace a soon as its available
+*/
+.mapboxgl-ctrl-top-right .gauge-core ,
+.mapboxgl-ctrl-bottom-right .gauge-core {
+    margin-left: auto;
+}
+
+.titol {
+    font-size: x-small;    
+}
+
+.valor {
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.min,
+.max {
+    font-size: xx-small;
+    position: absolute;
+}
+
+.min {
+    top: 50%;
+    left: 5px;
+}
+
+.max {
+    top: 50%;
+    right: 5px;
+}
+
+.text-light {
+    text-shadow: 0 0 3px #ffffff;
+    color: #333;
+}
+
+.text-dark {
+    text-shadow: 0 0 3px #000000;
+    color: #ddd;
+}
+
+.gauge-light {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.gauge-dark {
+    background: rgba(0, 0, 0, 0.7);
+}
