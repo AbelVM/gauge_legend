@@ -57,7 +57,7 @@ Check the live example [here](https://abelvm.github.io/gauge_legend/example/)
 | Param | Datatype |  Description | Default |
 |---|---|---|---|
 | layer | string | The ID of the layer to be observed |  |
-| property | string | The property that will be observed |  |
+| property | string | The numeric property that will be observed |  |
 | colors | string[ ] | Array of HEX colors to be used in the legend. Should match the ones used to style the layer |  |
 | breaks | number[ ] | Array of breaks of the classification of the selected property. Must have the same size as `colors` |  |
 | theme | enum['dark', 'light'] | Avaliable themes | 'dark' |
