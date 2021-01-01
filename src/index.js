@@ -8,12 +8,13 @@ module.exports = class GaugeLegend {
             text1: '',
             text2: '',
             trigger: 'idle'
-        };
+        },
+        svgURI = 'http://www.w3.org/2000/svg';
         this.config = Object.assign(defaultconfig, config);
-        this._legend = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        this._tick = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        this._legend = document.createElementNS(svgURI, 'svg');
+        this._tick = document.createElementNS(svgURI, 'path');
         this.config.colors.forEach((a, i) => {
-            let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            let path = document.createElementNS(svgURI, 'path');
             path.setAttribute('id', `arc_${i}`);
             path.setAttribute('fill', 'none');
             path.setAttribute('stroke', a);
@@ -75,8 +76,8 @@ module.exports = class GaugeLegend {
         this._map = map;
         this._container = document.createElement('div');
         this._container.className = `gauge-core gauge-${this.config.theme}`;
-        this._container.style.maxHeight = this.config.size;
-        this._container.style.maxWidth = this.config.size;
+        this._container.style.height = this.config.size;
+        this._container.style.width = this.config.size;
         this._container.innerHTML = `
             <div class="titol text-${this.config.theme}">${this.config.text1}</div>
             <div class="valor text-${this.config.theme}">-</div>
