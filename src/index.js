@@ -32,6 +32,7 @@ module.exports = class GaugeLegend {
         const
             r = this._container.offsetHeight / 2,
             w = Math.round(180 / this.config.breaks.length),
+            d = (180 - w) / 2,
             ctrl = document.querySelector('.valor'),
             data = this._map.queryRenderedFeatures({ layers: [this.config.layer] }).map(b => b.properties[this.config.property] * 1),
             avg = Math.round(10 * data.reduce((a, b) => a + b, 0) / data.length) / 10,
@@ -51,7 +52,7 @@ module.exports = class GaugeLegend {
         } else {
             ctrl.style.color = color;
             ctrl.textContent = `${avg}${(this.config.unit !== '') ? ` ${this.config.unit}` : ''}`;
-            this._tick.setAttribute("d", GaugeLegend.describeArc(r, r, r - 12, (w * b) - 80, (w * b) - 77));
+            this._tick.setAttribute("d", GaugeLegend.describeArc(r, r, r - 12, (w * b) - d, (w * b) - d + 3));
         }
     }
     static polarToCartesian(centerX, centerY, radius, angleInDegrees) {
