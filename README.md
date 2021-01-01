@@ -6,6 +6,8 @@ This simple control adds a dynamic legend component to a [MapLibre GL](https://g
 
 It's based in the gauge I implemented in  the app [Distanciamiento peatonal in Madrid](https://distanciamiento.inspide.com/) (a map where the width of the sidewalks in Madrid are evaluated in terms of keeping the required social distancing), but made into a proper parametric control.
 
+Check the live example [here](https://abelvm.github.io/gauge_legend/example/).
+
 ## How to
 
 It has no dependencies, but if you want to use it as an UMD bundle, you need to
@@ -48,9 +50,6 @@ map.on('load', function () {
 ```
 
 And Ta-da!
-
-
-Check the live example [here](https://abelvm.github.io/gauge_legend/example/)
 
 ## Parameters
 
