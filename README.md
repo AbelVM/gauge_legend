@@ -61,7 +61,7 @@ Check the live example [here](https://abelvm.github.io/gauge_legend/example/)
 | colors | string[ ] | Array of HEX colors to be used in the legend. Should match the ones used to style the layer |  |
 | breaks | number[ ] | Array of breaks of the classification of the selected property. Must have the same size as `colors` |  |
 | theme | enum['dark', 'light'] | Avaliable themes | 'dark' |
-| size | string | Max diameter of the control in [CSS units](https://www.w3schools.com/cssref/css_units.asp). It tries to grow up to 20% of the height of the viewport, limited by this value | '100px' |
+| size | string | Diameter of the control in [CSS units](https://www.w3schools.com/cssref/css_units.asp) | '100px' |
 | unit | string | Unit symbol to be added to the displayed value | '' |
 | text1 | string | Upper text | '' |
 | text2 | string | Bottom text | '' |
