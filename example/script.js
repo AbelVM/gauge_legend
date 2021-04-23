@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-import maplibre from 'https://cdn.skypack.dev/pin/maplibre-gl@v1.13.0-rc.4-SIOCqsILuFMvv7MmxTuG/min/maplibre-gl.js';
+import maplibre from 'https://cdn.skypack.dev/maplibre-gl';
 import '../dist/gaugelegend.js';
 
 const config = {
