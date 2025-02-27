@@ -16,6 +16,6 @@
     },
     "dependencies": {},
     "scripts": {
-        "build": "browserify src/index.js --standalone GaugeLegend | terser -c -m --source-map -o dist/gaugelegend.js & postcss src/index.css > dist/gaugelegend.css"
+        "build": "mkdir -p dist & browserify src/index.js --standalone GaugeLegend | terser -c -m --source-map -o dist/gaugelegend.js & postcss src/index.css > dist/gaugelegend.css"
     }
 }

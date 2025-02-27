@@ -7,7 +7,7 @@ module.exports = class GaugeLegend {
             unit:'',
             text1: '',
             text2: '',
-            trigger: 'idle'
+            trigger: 'render'
         },
         svgURI = 'http://www.w3.org/2000/svg';
         this.config = Object.assign(defaultconfig, config);
@@ -28,13 +28,13 @@ module.exports = class GaugeLegend {
         this._legend.appendChild(this._tick);
         this.__flag__ = true;
     }
-    refresh() {
+    async refresh() {
         const
             r = this._container.offsetHeight / 2,
             w = Math.round(180 / this.config.breaks.length),
             d = (180 - w) / 2,
             ctrl = document.querySelector('.valor'),
-            data = this._map.queryRenderedFeatures({ layers: [this.config.layer] }).map(b => b.properties[this.config.property] * 1),
+            data = await this._map.queryRenderedFeatures({ layers: [this.config.layer] }).map(b => b.properties[this.config.property] * 1),
             avg = Math.round(10 * data.reduce((a, b) => a + b, 0) / data.length) / 10,
             b = this.config.breaks.map((b, i) => (b > avg) ? i : -1).filter(k => k > -1)[0],
             color = this.config.colors[b];

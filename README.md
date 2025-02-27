@@ -64,7 +64,7 @@ And Ta-da!
 | unit | string | Unit symbol to be added to the displayed value | '' |
 | text1 | string | Upper text | '' |
 | text2 | string | Bottom text | '' |
-| trigger | enum['idle', 'moveend'] | Map event that fires the control update. It defaults to `idle` as it's safer when the tiles are heavy or the number of rendered features is high. `moveend` gives a smoother experience but might give false results | 'idle' |
+| trigger | [MapEventType](https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/MapEventType/) | Map event that fires the control update. | 'render' |
 
 ## Custom theming
 Custom themes can be used by adding the needed classes in your CSS:
