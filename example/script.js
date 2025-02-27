@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
-import maplibre from 'https://cdn.skypack.dev/maplibre-gl';
+// import maplibregl from 'https://unpkg.com/maplibre-gl@^5.1.0/dist/maplibre-gl.js';
+// import 'https://unpkg.com/maplibre-gl@^5.1.0/dist/maplibre-gl.css';
 import '../dist/gaugelegend.js';
 
 const config = {
@@ -8,10 +9,11 @@ const config = {
   text1: 'kernel',
   text2: 'density',
   colors: ["#007080", "#546e82", "#7f6984", "#a16287", "#c25689", "#e0448b", "#ff1d8e"],
-  breaks: [7,17,32,57,129,253,334]
+  breaks: [7,17,32,57,129,253,334],
+  trigger: 'render'
 };
 
-const map = new maplibre.Map({
+const map = new maplibregl.Map({
   container: 'map',
   style: 'https://tiles.basemaps.cartocdn.com/gl/positron-gl-style/style.json',
   center: [-3.703793, 40.416687],
@@ -47,5 +49,5 @@ map.on('load', function () {
       }
   });
   const gauge = new GaugeLegend(config);
-  map.addControl(gauge, 'bottom-right');
+  map.addControl(gauge, 'top-right');
 });
