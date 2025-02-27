@@ -65,6 +65,7 @@ And Ta-da!
 | text1 | string | Upper text | '' |
 | text2 | string | Bottom text | '' |
 | trigger | [MapEventType](https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/MapEventType/) | Map event that fires the control update. | 'render' |
+| fixedto | uint | Number of decimal positions | 2 |
 
 ## Custom theming
 Custom themes can be used by adding the needed classes in your CSS:

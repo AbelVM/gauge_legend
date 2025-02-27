@@ -9,8 +9,7 @@ const config = {
   text1: 'kernel',
   text2: 'density',
   colors: ["#007080", "#546e82", "#7f6984", "#a16287", "#c25689", "#e0448b", "#ff1d8e"],
-  breaks: [7,17,32,57,129,253,334],
-  trigger: 'render'
+  breaks: [7,17,32,57,129,253,334]
 };
 
 const map = new maplibregl.Map({

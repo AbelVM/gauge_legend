@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position:relative;
+    position: relative;
 }
 
 .gauge-core svg {
@@ -20,18 +20,29 @@
 /* 
     TODO: change to maplibre namespace a soon as its available
 */
-.mapboxgl-ctrl-top-right .gauge-core ,
+.mapboxgl-ctrl-top-right .gauge-core,
 .mapboxgl-ctrl-bottom-right .gauge-core {
     margin-left: auto;
 }
 
 .titol {
-    font-size: x-small;    
+    font-size: x-small;
 }
 
 .valor {
     font-size: x-large;
     font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.int {
+    text-align: right;
+}
+
+.decimals {
+    text-align:left
 }
 
 .min,

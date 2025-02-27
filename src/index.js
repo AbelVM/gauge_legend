@@ -7,7 +7,8 @@ module.exports = class GaugeLegend {
             unit:'',
             text1: '',
             text2: '',
-            trigger: 'render'
+            trigger: 'render',
+            decimals: 2
         },
         svgURI = 'http://www.w3.org/2000/svg';
         this.config = Object.assign(defaultconfig, config);
@@ -28,14 +29,16 @@ module.exports = class GaugeLegend {
         this._legend.appendChild(this._tick);
         this.__flag__ = true;
     }
-    async refresh() {
+    refresh() {
         const
             r = this._container.offsetHeight / 2,
             w = Math.round(180 / this.config.breaks.length),
             d = (180 - w) / 2,
             ctrl = document.querySelector('.valor'),
-            data = await this._map.queryRenderedFeatures({ layers: [this.config.layer] }).map(b => b.properties[this.config.property] * 1),
-            avg = Math.round(10 * data.reduce((a, b) => a + b, 0) / data.length) / 10,
+            int = document.querySelector('.int'),
+            decimals = document.querySelector('.decimals'),
+            data = this._map.queryRenderedFeatures({ layers: [this.config.layer] }).map(b => b.properties[this.config.property] * 1),
+            avg = (data.reduce((a, b) => a + b, 0) / data.length),
             b = this.config.breaks.map((b, i) => (b > avg) ? i : -1).filter(k => k > -1)[0],
             color = this.config.colors[b];
         if (this.__flag__ === true) {
@@ -47,11 +50,18 @@ module.exports = class GaugeLegend {
         }
         if (isNaN(avg)) {
             ctrl.style.color = '#666';
-            ctrl.textContent = `-`;
+            int.textContent = `-`;
+            decimals.textContent = '-';
             this._tick.setAttribute("d", GaugeLegend.describeArc(r, r, r - 12, 0, 0));
         } else {
+            const fixed = avg.toFixed(this.config.decimals).split('.');
             ctrl.style.color = color;
-            ctrl.textContent = `${avg}${(this.config.unit !== '') ? ` ${this.config.unit}` : ''}`;
+            if (this.config.decimals === 0){
+                int.textContent = `${fixed[0]}${(this.config.unit !== '') ? ` ${this.config.unit}` : ''}`;
+            }else{
+                int.textContent = fixed[0];
+                decimals.textContent = `${fixed[1]}${(this.config.unit !== '') ? ` ${this.config.unit}` : ''}`;
+            }
             this._tick.setAttribute("d", GaugeLegend.describeArc(r, r, r - 12, (w * b) - d, (w * b) - d + 3));
         }
     }
@@ -76,15 +86,23 @@ module.exports = class GaugeLegend {
     onAdd(map) {
         this._map = map;
         this._container = document.createElement('div');
+        this._container.range = [this.config.breaks[0], this.config.breaks[this.config.breaks.length - 1]];
+        this._container.format = this._container.range[1].toString().split('.')[0].length;
         this._container.className = `gauge-core gauge-${this.config.theme}`;
         this._container.style.height = this.config.size;
         this._container.style.width = this.config.size;
         this._container.innerHTML = `
             <div class="titol text-${this.config.theme}">${this.config.text1}</div>
-            <div class="valor text-${this.config.theme}">-</div>
+            <div class="valor text-${this.config.theme}">${
+                (this.config.decimals === 0) ? 
+                `<div class="int" style="width:${this._container.format}ch">-</div>` : 
+                `<div class="int" style="width:${this._container.format}ch">-</div>
+                <div class="dot">.</div>
+                <div class="decimals" style="width:${this.config.decimals}ch">-</div>`
+            }</div>
             <div class="titol text-${this.config.theme}">${this.config.text2}</div>
-            <div class="min text-${this.config.theme}">${this.config.breaks[0]}</div>
-            <div class="max text-${this.config.theme}">${this.config.breaks[this.config.breaks.length - 1]}</div>`;
+            <div class="min text-${this.config.theme}">${this._container.range[0]}</div>
+            <div class="max text-${this.config.theme}">${this._container.range[1]}</div>`;
         this._container.appendChild(this._legend);
         this._map.on(this.config.trigger, this.refresh.bind(this));
         return this._container;
